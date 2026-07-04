@@ -120,3 +120,4 @@
 /Users/davidmuir/Documents/order-validation-service/api/obj/Debug/net10.0/api.pdb
 /Users/davidmuir/Documents/order-validation-service/api/obj/Debug/net10.0/api.genruntimeconfig.cache
 /Users/davidmuir/Documents/order-validation-service/api/obj/Debug/net10.0/ref/api.dll
+/Users/davidmuir/Documents/order-validation-service/api/obj/Debug/net10.0/api.sourcelink.json

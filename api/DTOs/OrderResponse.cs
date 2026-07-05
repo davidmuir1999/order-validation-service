@@ -8,6 +8,7 @@ public record OrderItemResponse
 {
     public int Id { get; init; }
     public int ProductId { get; init; }
+    public required string ProductName { get; init; }
     public int Quantity { get; init; }
     public decimal UnitPrice { get; init; }
 }
@@ -46,6 +47,7 @@ public record OrderResponse
         {
             Id = oi.Id,
             ProductId = oi.ProductId,
+            ProductName = oi.Product.Name,
             Quantity = oi.Quantity,
             UnitPrice = oi.UnitPrice
         }).ToList()

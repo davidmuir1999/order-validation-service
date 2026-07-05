@@ -42,6 +42,7 @@ public class OrdersController : ControllerBase
             var orderItem = new OrderItem
             {
                 ProductId = product.Id,
+                Product = product,
                 Quantity = itemRequest.Quantity,
                 UnitPrice = product.Price
             };
@@ -68,6 +69,23 @@ public class OrdersController : ControllerBase
 
         _db.Orders.Add(order);
         await _db.SaveChangesAsync();
+        return Ok(OrderResponse.FromOrder(order));
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetOrder(int id)
+    {
+        var order = await _db.Orders
+            .Include(o => o.Customer)
+            .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+            .FirstOrDefaultAsync(o => o.Id == id);
+
+        if (order == null)
+        {
+            return NotFound($"Order with ID {id} not found.");
+        }
+
         return Ok(OrderResponse.FromOrder(order));
     }
 }
